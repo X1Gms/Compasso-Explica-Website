@@ -1,5 +1,6 @@
 import Links from "./links";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 const links: { name: string; link: string }[] = [
   {
@@ -21,15 +22,29 @@ const links: { name: string; link: string }[] = [
 ];
 
 const Navbar = () => {
+  const [IsActive, SetActive] = useState(false);
+
+  const Toggle = () => {
+    SetActive(!IsActive);
+  };
+
   return (
-    <div className="min-h-[100px] w-full bg-red-600 flex justify-between">
+    <div className="min-h-[100px] w-full flex justify-between">
       <NavLink to="/">
-        <img src="/CompassoExplicaLogo.png" className="w-[165px]" />
+        <img src="/CompassoExplicaLogo.png" className="logo" />
       </NavLink>
-      <div className="links max-w-[1200px] w-full flex bg-yellow-400 justify-around items-center">
+      <div className="links max-w-[1000px] w-full flex justify-around items-center">
         {links.map((item, index) => (
           <Links key={index} name={item.name} link={item.link} />
         ))}
+      </div>
+      <div
+        className={`hamburguer ${IsActive ? "active" : ""}`}
+        onClick={Toggle}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </div>
   );

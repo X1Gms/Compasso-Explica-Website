@@ -13,7 +13,7 @@ const App = () => {
   const location = useLocation();
 
   return (
-    <div className="px-[200px] pt-[25px]">
+    <div className="main pt-[25px]">
       <Navbar />
       {location.state}
       {routes}

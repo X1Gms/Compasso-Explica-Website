@@ -1,0 +1,76 @@
+$breakpoints: 300px 400px 768px 992px 1270px;
+$nv-margins: 15px 25px 50px 100px 200px;
+
+.main {
+  margin: 0 10px 0 10px;
+}
+
+.hamburguer {
+  display: none;
+}
+
+@each $value in $breakpoints {
+  $index: index($breakpoints, $value);
+
+  @media (min-width: $value) {
+    .main {
+      margin: 0 nth($nv-margins, $index) 0 nth($nv-margins, $index);
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .hamburguer {
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    height: 100%;
+    cursor: pointer;
+    transition: 0.4s;
+
+    span {
+      transition: 0.4s;
+      height: 4px;
+      border-radius: 3px;
+      width: 100%;
+      margin-bottom: 10px;
+      background: black;
+      position: relative;
+    }
+
+    span:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .links {
+    display: none;
+  }
+
+  .hamburguer.active {
+    span:nth-child(1) {
+      transform: rotate(45deg);
+      top: 11px;
+    }
+
+    span:nth-child(2) {
+      display: none;
+    }
+
+    span:nth-child(3) {
+      transform: rotate(-45deg);
+      top: -3px;
+    }
+  }
+}
+
+.logo {
+  width: 165px;
+}
+
+@media (max-width: 600px) {
+  .logo {
+    width: 130px;
+  }
+}
